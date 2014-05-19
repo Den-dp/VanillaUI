@@ -40,3 +40,40 @@
       -ms-user-select: @arguments;
           user-select: @arguments;
 }
+
+/*
+// Mixins: Grid - 2 column with gutter
+//
+// Custom grid, fully fluid to 100% of the container
+//
+// Usage:
+//
+// * `@include grid-flexi-x2(66/407, 11/407, 330/407);`
+//
+// Layout:
+//
+// * 1 row, containing 2 columns, separated by 1 gutter
+//
+// Parameters:
+//
+// * `$col1_width_nounit` - width of first column, divided by total width of container
+// * `$gutter_width_nounit` - width of gutter, divided by total width of container
+// * `$col2_width_nounit` - width of last column, divided by total width of container
+//
+//
+//
+// Markup:
+// <div class="debug">
+//     <div class="grid-flexi-test">
+//         <div class="col">
+//             column 1
+//         </div>
+//         <div class="col">
+//             column 2
+//         </div>
+//     </div>
+//     <!-- /.grid-flexi-x2 -->
+// </div>
+//
+// Styleguide 1.3
+*/
