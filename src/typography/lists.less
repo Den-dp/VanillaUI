@@ -1,0 +1,84 @@
+// Lists
+//
+// Styleguide 2.3.
+
+// Unordered
+//
+// A list of items in which the order does not explicitly matter.
+//
+// Markup:
+// <ul>
+//    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+//    <li>Curabitur pharetra, magna at tempus tempor, mauris dui gravida sapien.</li>
+//    <li>Maecenas lectus mi, pellentesque ac diam sed, aliquam egestas nisi.
+//    <ul>
+//        <li>Curabitur pharetra, magna at tempus tempor, mauris dui gravida sapien.</li>
+//        <li>Maecenas lectus mi, pellentesque ac diam sed, aliquam egestas nisi.</li>
+//    </ul>
+//    </li>
+//    <li>Etiam orci eros, dapibus a eleifend.</li>
+// </ul>
+//
+// Styleguide 2.3.1.
+
+// Ordered
+//
+// A list of items in which the order does explicitly matter.
+//
+// Markup:
+// <ol>
+//    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+//    <li>Curabitur pharetra, magna at tempus tempor, mauris dui gravida sapien.</li>
+//    <li>Maecenas lectus mi, pellentesque ac diam sed, aliquam egestas nisi.</li>
+//    <li>Etiam orci eros, dapibus a eleifend.</li>
+// </ol>
+//
+// Styleguide 2.3.2.
+
+// Unstyled
+//
+// Remove the default list-style and left margin on list items (immediate children only).
+// This only applies to immediate children list items, meaning you will need to add the class for any nested lists as well.
+//
+// Markup:
+// <ul class="list-unstyled">
+//    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+//    <li>Curabitur pharetra, magna at tempus tempor, mauris dui gravida sapien.</li>
+//    <li>Maecenas lectus mi, pellentesque ac diam sed, aliquam egestas nisi.
+//    <ul>
+//        <li>Curabitur pharetra, magna at tempus tempor, mauris dui gravida sapien.</li>
+//        <li>Maecenas lectus mi, pellentesque ac diam sed, aliquam egestas nisi.</li>
+//    </ul>
+//    </li>
+//    <li>Etiam orci eros, dapibus a eleifend.</li>
+// </ul>
+//
+// Styleguide 2.3.3.
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+// Inline
+//
+// Place all list items on a single line with `display: inline-block;` and some light padding.
+//
+// Markup:
+// <ul class="list-inline">
+//    <li>Lorem ipsum</li>
+//    <li>Phasellus iaculis</li>
+//    <li>Nulla volutpat</li>
+// </ul>
+//
+// Styleguide 2.3.4.
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+    margin-left: -5px;
+
+    &>li {
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}

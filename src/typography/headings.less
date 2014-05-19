@@ -1,0 +1,64 @@
+// Headings
+//
+// Styleguide 2.1.
+
+// Headings
+//
+// Markup:
+// <h1>h1 Example heading</h1>
+// <h2>h2 Example heading</h2>
+// <h3>h3 Example heading</h3>
+// <h4>h4 Example heading</h4>
+// <h5>h5 Example heading</h5>
+// <h6>h6 Example heading</h6>
+//
+// Styleguide 2.1.1.
+h1, h2, h3, h4, h5, h6 {
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @headings-line-height;
+    color: @headings-color;
+    margin-top: @line-height-computed;
+    margin-bottom: @line-height-computed;
+}
+
+h1 {
+    font-size: @font-size-h1;
+}
+h2 {
+    font-size: @font-size-h2;
+}
+h3 {
+    font-size: @font-size-h3;
+}
+h4 {
+    font-size: @font-size-h4;
+}
+h5 {
+    font-size: @font-size-h5;
+}
+h6 {
+    font-size: @font-size-h6;
+}
+
+
+// Headings with a secondary text
+//
+// Markup:
+// <h1>h1. Example heading <small>Secondary text</small></h1>
+// <h2>h2. Example heading <small>Secondary text</small></h2>
+// <h3>h3. Example heading <small>Secondary text</small></h3>
+// <h4>h4. Example heading <small>Secondary text</small></h4>
+// <h5>h5. Example heading <small>Secondary text</small></h5>
+// <h6>h6. Example heading <small>Secondary text</small></h6>
+//
+// Styleguide 2.1.2.
+h1, h2, h3, h4, h5, h6 {
+    small,
+    .small {
+        font-weight: normal;
+        line-height: 1;
+        color: @headings-small-color;
+        font-size: 65%;
+    }
+}
