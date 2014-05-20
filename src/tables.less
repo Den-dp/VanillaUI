@@ -1,0 +1,218 @@
+// Tables
+//
+// For basic styling — light padding and only horizontal dividers — add the base class `.table` to any `<table>`.
+// For more advanced styling use the following:
+//
+// Markup:
+// <table class="table {$modifiers}">
+//     <tr>
+//         <th>ID</th>
+//         <th>Username</th>
+//         <th>Role</th>
+//     </tr>
+//     <tr>
+//         <td>1</td>
+//         <td>Bruno</td>
+//         <td>Admin</td>
+//     </tr>
+//     <tr>
+//         <td>2</td>
+//         <td>John</td>
+//         <td>SEO</td>
+//     </tr>
+//     <tr>
+//         <td>3</td>
+//         <td>James</td>
+//         <td>User</td>
+//     </tr>
+// </table>
+//
+// .table-simple - TODO
+// .table-condensed - Makes tables more compact by cutting cell padding in half.
+// .table-striped - Adds zebra-striping to any table row within the `<tbody>`.
+// .table-hover - Enables a hover state on table rows within a `<tbody>`.
+// .table-selectable - Enables a select state on table rows within a `<tbody>`.
+// .table-centered-cell - TODO
+// .table-centered-first-col - TODO
+// .table-left-thead-align - TODO
+//
+// Styleguide 3.1.
+@import "mixins";
+
+.table {
+    @lightColor: #DDE1E4;
+    @controlBackgroundColor: rgb(243, 243, 243);
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    tr, th, td {
+        padding: 10px;
+        border: 1px solid @lightColor;
+        color: dimgray;
+    }
+
+    th {
+        vertical-align: middle;
+        background: lighten(@lightColor, 5%);
+        font-weight: normal;
+        text-align: left;
+    }
+
+
+    &-striped {
+
+        tbody tr:nth-child(odd) {
+            background: @controlBackgroundColor;
+        }
+    }
+
+    &-simple {
+
+        tr, td, th {
+            border: none;
+        }
+
+        th {
+            text-transform: uppercase;
+            border-bottom: 1px dotted #ddd;
+            background: none;
+        }
+
+    }
+
+    &-selectable {
+        tbody tr {
+            .transition (background-color 0.5s ease);
+            cursor: pointer;
+
+            .selected {
+                background: lighten(@controlBackgroundColor, 50%);
+            }
+
+        }
+
+    }
+
+    &-hover {
+        tbody tr {
+            .transition (background-color 0.5s ease);
+
+            &:hover {
+                background: darken(@controlBackgroundColor, 5%);
+
+                td {
+                    color: black; //todo: get rid
+                }
+            }
+        }
+
+    }
+
+    &-condensed {
+
+        th, td {
+            padding: 2px 5px;
+        }
+
+    }
+
+    &-centered-cell {
+
+        th, tr, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    }
+
+    &-centered-first-col {
+
+        tr th:nth-child(1) {
+            text-align: center;
+        }
+
+        tr td:nth-child(1) {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    }
+
+    .col-width {
+
+        &-100 {
+            width: 100px;
+        }
+
+    }
+
+}
+
+.table-row(@variant; @background) {
+    .table tr {
+        td.@{variant},
+        th.@{variant},
+        &.@{variant} td,
+        &.@{variant} th {
+            background-color: @background;
+        }
+    }
+
+    .table-hover tbody tr {
+        td.@{variant}:hover,
+        th.@{variant}:hover,
+        &.@{variant}:hover td,
+        &.@{variant}:hover th,
+        &:hover .@{variant} {
+            background-color: darken(@background, 5%);
+        }
+    }
+}
+
+// Contextual classes for rows
+//
+// Use contextual classes to color table rows.
+// Exact selectors below required to override `.table-striped`.
+//
+// Markup:
+// <table class="table">
+//     <tr class="{$modifiers}">
+//         <td>Content</td>
+//         <td>Content</td>
+//         <td>Content</td>
+//         <td>Content</td>
+//         <td>Content</td>
+//     </tr>
+// </table>
+//
+// .active	- Applies the hover color to a particular row or cell
+// .success	- Indicates a successful or positive action
+// .info	- Indicates a neutral informative change or action
+// .warning	- Indicates a warning that might need attention
+// .danger	- Indicates a dangerous or potentially negative action
+//
+// Styleguide 3.2.
+.table-row(active; @table-bg-active);
+.table-row(success; @state-success-bg);
+.table-row(info; @state-info-bg);
+.table-row(warning; @state-warning-bg);
+.table-row(danger; @state-danger-bg);
+
+
+// Contextual classes for columns
+//
+// Use contextual classes to color individual cells.
+//
+// Markup:
+// <table class="table">
+//     <tr>
+//         <td class="active">Content</td>
+//         <td class="success">Content</td>
+//         <td class="info">Content</td>
+//         <td class="warning">Content</td>
+//         <td class="danger">Content</td>
+//     </tr>
+// </table>
+//
+// Styleguide 3.3.
