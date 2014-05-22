@@ -1,0 +1,133 @@
+// Buttons
+//
+// All buttons in the site are built from the same base class.
+//
+// Markup:
+// <a href="#" class="button {$modifiers}">Link Button</a>
+// <button class="button {$modifiers}">Button Element</button>
+// <input type="button" class="button {$modifiers}" value="input[type='button']"/>
+//
+// :hover                     - TODO
+// :active                    - TODO
+// :disabled                  - TODO
+// .button__primary           - Indicate that the button is the primary feature of this form.
+// .button__primary:hover     - TODO
+// .button__primary:active    - TODO
+// .button__primary:disabled  - TODO
+// .button__gray              - Indicate that the button will remove a feature, or other negative connotations.
+// .button__gray:hover        - TODO
+// .button__gray:active       - TODO
+// .button__gray:disabled     - TODO
+// .button__danger            - Indicate that the button will remove a feature, or other negative connotations.
+// .button__danger:hover      - TODO
+// .button__danger:active     - TODO
+// .button__danger:disabled   - TODO
+//
+// Styleguide 4.1.
+input,
+button,
+label,
+select{
+    .button-look;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 2px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: 0;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    .user-select (none);
+    .box-shadow (0 1px 0 rgba(0,0,0,0.05));
+    .box-sizing (border-box);
+    .transition (all .2s);
+    border-radius: 2px;
+    border: none;
+    line-height: normal;
+
+    &:visited, &:hover, &:active {
+        color:#fff;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &.pseudo-class-disabled,
+    &[disabled] {
+        cursor: default;
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: .65;
+        filter: alpha(opacity=65);
+        .box-shadow (none);
+    }
+
+    @buttonBackground: rgb(57, 168, 230);
+    @buttonHoverBackground: lighten(@buttonBackground, 10%);
+    @buttonActiveBackground: darken(@buttonBackground, 10%);
+    @textColor: white;
+    .button-colorize (@buttonBackground, @buttonHoverBackground, @buttonActiveBackground, @textColor);
+
+    &.button__primary {
+        @buttonBackground: rgb(99, 185, 93);
+        @buttonHoverBackground: lighten(@buttonBackground, 2%);
+        @buttonActiveBackground: darken(@buttonBackground, 2%);
+        @textColor: white;
+        .button-colorize (@buttonBackground, @buttonHoverBackground, @buttonActiveBackground, @textColor);
+    }
+
+    &.button__gray {
+        @buttonBackground: rgb(223, 223, 223);
+        @buttonHoverBackground: lighten(@buttonBackground, 5%);
+        @buttonActiveBackground: darken(@buttonBackground, 10%);
+        @textColor: black;
+        .button-colorize (@buttonBackground, @buttonHoverBackground, @buttonActiveBackground, @textColor);
+    }
+
+    &.button__danger {
+        @buttonBackground: rgb(210, 50, 45);
+        @buttonHoverBackground: lighten(@buttonBackground, 2%);
+        @buttonActiveBackground: darken(@buttonBackground, 2%);
+        @textColor: white;
+        .button-colorize (@buttonBackground, @buttonHoverBackground, @buttonActiveBackground, @textColor);
+    }
+
+}
+
+.button-look(){
+    margin: 0.1em;
+    padding: 0.5em 0.3em;
+    font: 1em 'Segoe UI' , Arial, sans-serif;
+    color: black;
+    .transition (.5s box-shadow ease);
+}
+
+/**
+  * Button mixin
+ */
+.button-colorize (@background, @hoverBackground, @activeBackground, @textColor: #fff) {
+    background-color: @background;
+    color: @textColor;
+
+    &.pseudo-class-hover,
+    &:hover {
+        color: @textColor;
+        background-color: @hoverBackground;
+        .box-shadow (inset 0 -2px 0 rgba(0,0,0,0.27));
+    }
+
+    &.pseudo-class-active,
+    &:active {
+        background-color: @activeBackground;
+        .box-shadow (inset 0 2px 0 rgba(0,0,0,0.27));
+    }
+}
