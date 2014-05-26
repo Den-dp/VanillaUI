@@ -1,0 +1,238 @@
+// Fluid container
+//
+// Utilizes the mixin meant for fixed width containers, but without any defined
+// width for fluid, full width layouts.
+//
+// Markup:
+// <div class="container-fluid example">
+//   <div class="row">
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//     <div class="col-md-1">.col-md-1</div>
+//   </div>
+//   <div class="row">
+//     <div class="col-md-8">.col-md-8</div>
+//     <div class="col-md-4">.col-md-4</div>
+//   </div>
+//   <div class="row">
+//     <div class="col-md-4">.col-md-4</div>
+//     <div class="col-md-4">.col-md-4</div>
+//     <div class="col-md-4">.col-md-4</div>
+//   </div>
+//   <div class="row">
+//     <div class="col-md-6">.col-md-6</div>
+//     <div class="col-md-6">.col-md-6</div>
+//   </div>
+// </div>
+//
+// Styleguide 5.1.
+
+
+
+// Mobile and desktop
+//
+// Don't want your columns to simply stack in smaller devices? Use the extra small and medium device grid classes
+// by adding `.col-xs-*` `.col-md-*` to your columns. See the example below for a better idea of how it all works.
+//
+// Markup:
+// <div class="container-fluid example">
+//   <div class="row">
+//     <div class="col-xs-12 col-md-8">col-xs-12 col-md-8</div>
+//     <div class="col-xs-12 col-md-4">col-xs-12 col-md-4</div>
+//     <div class="col-xs-12 col-md-12">col-xs-12 col-md-12</div>
+//   </div>
+// </div>
+//
+// Styleguide 5.2.
+
+
+[class^=col] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+}
+
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+.row {
+    margin-left: -(@grid-gutter-width / 2);
+    margin-right: -(@grid-gutter-width / 2);
+}
+
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+.make-grid-columns();
+
+
+
+// Extra small grid
+//
+// Columns, offsets, pushes, and pulls for extra small devices like smartphones.
+
+.make-grid(xs);
+
+
+// Small grid
+//
+// Columns, offsets, pushes, and pulls for the small device range, from phones to tablets.
+
+@media (min-width: @screen-sm-min) {
+    .make-grid(sm);
+}
+
+
+// Medium grid
+//
+// Columns, offsets, pushes, and pulls for the desktop device range.
+
+@media (min-width: @screen-md-min) {
+    .make-grid(md);
+}
+
+
+// Large grid
+//
+// Columns, offsets, pushes, and pulls for the large desktop device range.
+
+@media (min-width: @screen-lg-min) {
+    .make-grid(lg);
+}
+
+
+
+// Framework grid generation
+//
+// Used only by framework to generate the correct number of grid classes given any value of `@grid-columns`.
+
+.make-grid-columns() {
+    .col(@index) when (@index = 1) {
+        @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+        .col((@index + 1), @item);
+    }
+    .col(@index, @list) when (@index =< @grid-columns) {
+        @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}";
+        .col((@index + 1), ~"@{list}, @{item}");
+    }
+    .col(@index, @list) when (@index > @grid-columns) {
+        @{list} {
+            position: relative;
+            // Prevent columns from collapsing when empty
+            min-height: 1px;
+            // Inner gutter via padding
+            padding-left:  (@grid-gutter-width / 2);
+            padding-right: (@grid-gutter-width / 2);
+        }
+    }
+    .col(1);
+}
+
+/*
+.generate-columns(@n) {
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1 {
+        position: relative;
+        // Prevent columns from collapsing when empty
+        min-height: 1px;
+        padding-left:  (@grid-gutter-width / 2);
+        padding-right: (@grid-gutter-width / 2);
+    }
+    .generate-columns(@n, 2);
+}
+
+.generate-columns(@n, @i) when (@i =< @n) {
+    .col-xs-@{i}, .col-sm-@{i}, .col-md-@{i}, .col-lg-@{i} {
+        &:extend(.col-xs-1);
+    }
+    .generate-columns(@n, (@i + 1));
+}
+*/
+
+.float-grid-columns(@class) {
+    .col(@index) when (@index = 1) {
+        @item: ~".col-@{class}-@{index}";
+        .col((@index + 1), @item);
+    }
+    .col(@index, @list) when (@index =< @grid-columns) {
+        @item: ~".col-@{class}-@{index}";
+        .col((@index + 1), ~"@{list}, @{item}");
+    }
+    .col(@index, @list) when (@index > @grid-columns) {
+        @{list} {
+            float: left;
+        }
+    }
+    .col(1);
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+    .col-@{class}-@{index} {
+        width: percentage((@index / @grid-columns));
+    }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+    .col-@{class}-push-@{index} {
+        left: percentage((@index / @grid-columns));
+    }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+    .col-@{class}-push-0 {
+        left: auto;
+    }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+    .col-@{class}-pull-@{index} {
+        right: percentage((@index / @grid-columns));
+    }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+    .col-@{class}-pull-0 {
+        right: auto;
+    }
+}
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+    .col-@{class}-offset-@{index} {
+        margin-left: percentage((@index / @grid-columns));
+    }
+}
+
+// Basic looping in LESS
+.loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+    .calc-grid-column(@index, @class, @type);
+    .loop-grid-columns((@index - 1), @class, @type);
+}
+
+// Create grid for specific size
+.make-grid(@size) {
+    .float-grid-columns(@size);
+    .loop-grid-columns(@grid-columns, @size, width);
+    .loop-grid-columns(@grid-columns, @size, pull);
+    .loop-grid-columns(@grid-columns, @size, push);
+    .loop-grid-columns(@grid-columns, @size, offset);
+}
+
+// todo: move to kss-template?
+.example [class^="col-"]{
+    outline: 1px solid;
+}
+
