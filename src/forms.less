@@ -1,0 +1,271 @@
+// Basic form
+//
+// Individual form controls automatically receive some global styling. All textual `<input>`, `<textarea>`, and `<select>`
+// elements with `.form-control` are set to `width: 100%;` by default. Wrap labels and controls in `.form-group` for optimum
+// spacing.
+//
+// Markup:
+// <form class="form">
+//     <div class="form-group">
+//         <label for="exampleEmail">Email address</label>
+//         <input type="email" class="form-control" id="exampleEmail" placeholder="Enter email">
+//         <div class="field-validation-error">Validation error example</div>
+//     </div>
+//     <div class="form-group">
+//         <label for="examplePassword">Password</label>
+//         <input type="password" class="form-control" id="examplePassword" placeholder="Password">
+//     </div>
+//     <div class="form-group">
+//         <label for="exampleComment">Comment</label>
+//         <textarea id="exampleComment" class="form-control" rows="3"></textarea>
+//     </div>
+//     <div class="form-group">
+//         <input id="remember" type="checkbox">
+//         <label for="remember">Remember me</label>
+//     </div>
+//     <button type="submit" class="button">Submit</button>
+// </form>
+//
+// Styleguide 6.1.
+.form {
+    position: relative;
+
+    .field-validation-error {
+        border: 1px solid red;
+        padding: 7px;
+        background: rgb(255, 224, 224);
+        margin: 10px 0;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+    }
+
+    .form-group {
+        display: block;
+        margin-bottom: 15px;
+    }
+
+}
+
+// Inline form
+//
+// Add `.form-inline` to your `<form>` for left-aligned and inline-block controls. This only applies to forms within viewports that are at least `768px` wide.
+//
+// Markup:
+// <form class="form-inline">
+//   <div class="form-group">
+//     <label class="sr-only" for="exampleInputEmail2">Email address</label>
+//     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+//   </div>
+//   <div class="form-group">
+//     <label class="sr-only" for="exampleInputPassword2">Password</label>
+//     <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+//   </div>
+//   <div class="form-group">
+//     <label>
+//       <input type="checkbox"> Remember me
+//     </label>
+//   </div>
+//   <button type="submit" class="button">Sign in</button>
+// </form>
+//
+// Styleguide 6.2.
+.form-inline{
+    label {
+        display: none;
+    }
+}
+@media (min-width: 768px) {
+
+    .form-inline .form-group {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+
+    }
+
+}
+
+
+// Horizontal Forms
+//
+// Use grid classes to align labels and groups of form controls in a horizontal layout by adding `.form-horizontal` to
+// the form. Doing so changes `.form-groups` to behave as grid rows, so no need for `.row`.
+//
+// Markup:
+// <form class="form form-horizontal">
+//     <div class="form-group">
+//         <label class="col-sm-3" for="exampleEmail">Email address</label>
+//         <div class="col-sm-9">
+//             <input type="email" class="form-control" id="exampleEmail" placeholder="Enter email">
+//         </div>
+//     </div>
+//     <div class="form-group">
+//         <label class="col-sm-3" for="examplePassword">Password</label>
+//         <div class="col-sm-9">
+//             <input type="password" class="form-control" id="examplePassword" placeholder="Password">
+//         </div>
+//     </div>
+//     <div class="form-group">
+//         <label class="col-sm-3" for="exampleComment">Comment</label>
+//         <div class="col-sm-9">
+//             <textarea id="exampleComment" class="form-control" rows="3"></textarea>
+//         </div>
+//     </div>
+//     <div class="form-group">
+//         <div class="col-sm-offset-3 col-sm-9">
+//             <button type="submit" class="button">Submit</button>
+//         </div>
+//     </div>
+// </form>
+//
+// Styleguide 6.3.
+.form-horizontal {
+    .form-group:extend(.clearfix all){
+        .make-row();
+    }
+
+/*    [class^=col-] {
+        margin-top: 15px;
+    }*/
+
+}
+
+// Advanced form
+//
+// Todo
+//
+// Markup:
+// <form class="form form-horizontal">
+//     <div class="form-group">
+//     	   <div class="col-sm-6">
+// 	           <label for="exampleName">Name</label>
+// 	           <input type="text" class="form-control" id="exampleName" placeholder="Enter name">
+//             <div class="field-validation-error">Validation error example</div>
+//     	   </div>
+//     	   <div class="col-sm-6">
+// 	           <label for="exampleSurname">Surname</label>
+// 	           <input type="text" class="form-control" id="exampleSurname" placeholder="Enter surname">
+//         </div>
+//     </div>
+//     <div class="form-group">
+//     	   <div class="col-sm-12">
+//             <label for="exampleCity">City</label>
+//             <input type="text" class="form-control" id="exampleCity" placeholder="City">
+//         </div>
+//     </div>
+//     <div class="form-group">
+//     	   <div class="col-sm-12">
+//             <input id="exampleSubscribe" type="checkbox">
+//             <label for="exampleSubscribe">Send me news</label>
+//         </div>
+//     </div>
+//     <button type="submit" class="button">Submit</button>
+// </form>
+//
+// Styleguide 6.4.
+
+/*
+// Deprecated form
+//
+// Markup:
+// <form class="form {$modifiers}">
+// 	   <label for="exampleName">Name</label>
+// 	   <input type="text" id="exampleName" placeholder="Enter name">
+// 	   <label for="exampleSurname">Surname</label>
+// 	   <input type="text" id="exampleSurname" placeholder="Enter surname">
+//     <label for="exampleCity">City</label>
+//     <input type="text" id="exampleCity" placeholder="City">
+//     <button type="submit" class="button">Submit</button>
+// </form>
+//
+// .form__top-aligned-labels - Form with top aligned labels.
+// .form__vertical-layout    - Form with vertical layout.
+// .form__horizontal-layout  - Form with horizaontal layout.
+//
+// Styleguide 6.5.
+.form{
+    //input,
+    //textarea,
+    .field-validation-error{
+        width: 100%;
+        .box-sizing (border-box);
+    }
+
+    &__top-aligned-labels{
+        display: inline-block;
+
+        input,
+        label,
+        textarea{
+            display: block;
+        }
+
+        input[type="password"],
+        input[type="text"]{
+            width: 300px;
+        }
+
+        button,
+        input[type="button"],
+        input[type="submit"],
+        input[type="reset"]{
+            margin: 15px 0 0;
+        }
+    }
+
+    &__vertical-layout{
+
+        & > *,
+        section > *{
+            display: block;
+        }
+
+        label{
+            font-variant: small-caps;
+        }
+
+    }
+
+    &__horizontal-layout{
+
+        & > label{
+            display: block;
+            min-width: 200px;
+            float: left;
+        }
+
+        & > label + input{
+            min-width: 200px;
+            float: left;
+        }
+
+        & > label + input + .field-validation-error{
+            display: inline-block;
+            min-width: 200px;
+            float: left;
+        }
+
+        & > label + input + .field-validation-valid:after,
+        & > label + input + .field-validation-error:after{
+            content: '';
+            clear: both;
+        }
+
+    }
+
+    &__ajax-loader::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 1px;
+        background: rgba(255,255,255,0.7) url('images/icons/ajax-loader.gif') no-repeat 50% 50%;
+        z-index: 2;
+    }
+}
+*/
